@@ -124,4 +124,5 @@ class XssFilter
 		return $source;
 	}
 }
+//ºº×ÖÕýÔò [\u4E00-\u9FA5]
 ?>
