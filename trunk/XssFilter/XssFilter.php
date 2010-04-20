@@ -1,12 +1,8 @@
 <?php
 /**
  * XssFilter
- * 
+ * @version 0.1
  * @author foxmeder
- * @param Array $tagArray
- * @param Array $attrArray
- * @param Array $attrKeywordArray
- * @return NULL
  *
  * @example
  * $xss = new XssFilter($tag, $attr, $keyword);
@@ -16,12 +12,38 @@
 class XssFilter
 {
 
+	/**
+	 *
+	 * @var <Array>
+	 */
 	protected $tagBlackList;
+	/**
+	 *
+	 * @var <Array>
+	 */
 	protected $attrBlackList;
+	/**
+	 *
+	 * @var <Array>
+	 */
 	protected $attrKeywordList;
+	/**
+	 *
+	 * @var <String>
+	 */
 	protected $regTag;
+	/**
+	 *
+	 * @var <String>
+	 */
 	protected $regAttr;
 
+	/**
+	 * constructor
+	 * @param <Array> $tagArray
+	 * @param <Array> $attrArray
+	 * @param <Array> $attrKeywordArray
+	 */
 	function  __construct($tagArray = array(), $attrArray = array(), $attrKeywordArray = array())
 	{
 		$tagDef = array('applet', 'body', 'bgsound', 'base', 'basefont', 'embed', 'frame', 'frameset', 'head', 'html', 'id', 'iframe', 'ilayer', 'layer', 'link', 'meta', 'name', 'object', 'script', 'style', 'title', 'xml');
@@ -33,6 +55,11 @@ class XssFilter
 		$this->GetReg();
 	}
 
+	/**
+	 * processer
+	 * @param <String> $str
+	 * @return <String>
+	 */
 	public function Process($str)
 	{
 		$str = $this->Decode($str);
@@ -50,11 +77,20 @@ class XssFilter
 		return $str;
 	}
 
+	/**
+	 * merge 2 array
+	 * @param <Array> $arr1
+	 * @param <Array> $arr2
+	 * @return <Array>
+	 */
 	protected function GetMerge($arr1, $arr2)
 	{
 		return array_unique(array_merge((array)$arr1, (array)$arr2));
 	}
 
+	/**
+	 * generate patterns
+	 */
 	protected function GetReg()
 	{
 		$tag = '(?:\w+)';
@@ -72,6 +108,11 @@ class XssFilter
 		$this->regAttr = "/$regattr/i";
 	}
 
+	/**
+	 * decode entities,decimal notation and hex notation to normal html code
+	 * @param <String> $source
+	 * @return <String>
+	 */
 	protected function Decode($source)
 	{
 		// url decode
