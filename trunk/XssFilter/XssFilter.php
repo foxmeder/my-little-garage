@@ -13,27 +13,27 @@ class XssFilter
 {
 
 	/**
-	 *
+	 * tag black list
 	 * @var <Array>
 	 */
 	protected $tagBlackList;
 	/**
-	 *
+	 * attribute black list
 	 * @var <Array>
 	 */
 	protected $attrBlackList;
 	/**
-	 *
+	 * attribute value keyword list
 	 * @var <Array>
 	 */
 	protected $attrKeywordList;
 	/**
-	 *
+	 * regexp pattern for tag
 	 * @var <String>
 	 */
 	protected $regTag;
 	/**
-	 *
+	 * regexp pattern for attribute
 	 * @var <String>
 	 */
 	protected $regAttr;
