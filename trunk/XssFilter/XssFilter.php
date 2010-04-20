@@ -153,6 +153,11 @@ class XssFilter
 		return dechex(bindec($bin_str)); //如想返回十六进制4f60，用这句
 	}
 
+	/**
+	 * 将文字进行UNICODE编码
+	 * @param <String> $name
+	 * @return <String>
+	 */
 	static function UnicodeEncode($name) {
 		$name = iconv('UTF-8', 'UCS-2', $name);
 		$len = strlen($name);
@@ -173,10 +178,13 @@ class XssFilter
 		return $str;
 	}
 
-	//将UNICODE编码后的内容进行解码
+	/**
+	 * 将UNICODE编码后的内容进行解码
+	 * @param <String> $name
+	 * @return <String>
+	 */
 	static function UnicodeDecode($name) {
 		//转换编码，将Unicode编码转换成可以浏览的utf-8编码
-		var_dump($name);
 		$pattern = '/([\w]+)|(\\\u([0-9a-f]{4}))/i';
 		preg_match_all($pattern, $name, $matches);
 		if (!empty($matches))
