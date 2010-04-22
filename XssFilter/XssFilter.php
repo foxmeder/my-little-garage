@@ -63,7 +63,6 @@ class XssFilter
 	public function Process($str)
 	{
 		$str = $this->Decode($str);
-		var_dump($str);
 		$str = preg_replace($this->regTag, '', $str);
 		while($str != ($str = preg_replace($this->regTag, '', $str)))
 		{
