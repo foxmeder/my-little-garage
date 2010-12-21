@@ -2,7 +2,7 @@
 /**
  * XssFilter
  * @version 0.1
- * @author foxmeder
+ * @author yangxiangliang <foxmeder@126.com>
  *
  * @example
  * $xss = new XssFilter($tag, $attr, $keyword);
@@ -124,36 +124,36 @@ class XssFilter
 	}
 
 	/**
-	 * °ÑÒ»¸öºº×Ö×ªÎªunicodeµÄÍ¨ÓÃº¯Êý£¬²»ÒÀÀµÈÎºÎ¿â£¬ºÍ±ðµÄ×Ô¶¨Òåº¯Êý£¬µ«ÓÐÌõ¼þ
-	 * Ìõ¼þ£º±¾ÎÄ¼þÒÔ¼°º¯ÊýµÄÊäÈë²ÎÊýÓ¦¸ÃÓÃutf£­8±àÂë£¬²»È»Òª¼Óº¯Êý×ª»»
-	 * ÆäÊµÒà¿ÉÇáÒ×±àÐ´·´Ïò×ª»»µÄº¯Êý£¬ÉõÖÁ²»¾ÖÏÞÓÚºº×Ö£¬Ææ¹ÖÎªÊ²Ã´phpÃ»ÓÐÏÖ³Éº¯Êý
+	 * ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªÎªunicodeï¿½ï¿½Í¨ï¿½Ãºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎºÎ¿â£¬ï¿½Í±ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½åº¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½utfï¿½ï¿½8ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½È»Òªï¿½Óºï¿½ï¿½ï¿½×ªï¿½ï¿½
+	 * ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×±ï¿½Ð´ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½Äºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úºï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ÎªÊ²Ã´phpÃ»ï¿½ï¿½ï¿½Ö³Éºï¿½ï¿½ï¿½
 	 * @author xieye
 	 *
-	 * @param {string} $word ±ØÐëÊÇÒ»¸öºº×Ö£¬»ò´ú±íºº×ÖµÄÒ»¸öÊý×é(ÓÃstr_splitÇÐ¸î¹ý)
-	 * @return {string} Ò»¸öÊ®½øÖÆunicodeÂë£¬Èç4f60£¬´ú±íºº×Ö ¡°Äã¡±
+	 * @param {string} $word ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½?ï¿½Öµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½str_splitï¿½Ð¸ï¿½ï¿½)
+	 * @return {string} Ò»ï¿½ï¿½Ê®ï¿½ï¿½ï¿½ï¿½unicodeï¿½ë£¬ï¿½ï¿½4f60ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ ï¿½ï¿½ï¿½ã¡±
 	 */
 	static function getUnicodeFromOneUTF8($word) {
-		//»ñÈ¡Æä×Ö·ûµÄÄÚ²¿Êý×é±íÊ¾£¬ËùÒÔ±¾ÎÄ¼þÓ¦ÓÃutf-8±àÂë£¡
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ä¼ï¿½Ó¦ï¿½ï¿½utf-8ï¿½ï¿½ï¿½ë£¡
 		if (is_array( $word))
 			$arr = $word;
 		else
 			$arr = str_split($word);
-		//´ËÊ±£¬$arrÓ¦ÀàËÆarray(228, 189, 160)
-		//¶¨ÒåÒ»¸ö¿Õ×Ö·û´®´æ´¢
+		//ï¿½ï¿½Ê±ï¿½ï¿½$arrÓ¦ï¿½ï¿½ï¿½ï¿½array(228, 189, 160)
+		//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½æ´¢
 		$bin_str = '';
-		//×ª³ÉÊý×ÖÔÙ×ª³É¶þ½øÖÆ×Ö·û´®£¬×îºóÁªºÏÆðÀ´¡£
+		//×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		foreach ($arr as $value)
 			$bin_str .= decbin(ord($value));
-		//´ËÊ±£¬$bin_strÓ¦ÀàËÆ111001001011110110100000,Èç¹ûÊÇºº×Ö"Äã"
-		//ÕýÔò½ØÈ¡
+		//ï¿½ï¿½Ê±ï¿½ï¿½$bin_strÓ¦ï¿½ï¿½ï¿½ï¿½111001001011110110100000,ï¿½ï¿½ï¿½ï¿½Çºï¿½ï¿½ï¿½"ï¿½ï¿½"
+		//ï¿½ï¿½ï¿½ï¿½ï¿½È¡
 		$bin_str = preg_replace('/^.{4}(.{4}).{2}(.{6}).{2}(.{6})$/','$1$2$3', $bin_str);
-		// ´ËÊ±£¬ $bin_strÓ¦ÀàËÆ0100111101100000,Èç¹ûÊÇºº×Ö"Äã"
-		//return bindec($bin_str); //·µ»ØÀàËÆ20320£¬ ºº×Ö"Äã"
-		return dechex(bindec($bin_str)); //ÈçÏë·µ»ØÊ®Áù½øÖÆ4f60£¬ÓÃÕâ¾ä
+		// ï¿½ï¿½Ê±ï¿½ï¿½ $bin_strÓ¦ï¿½ï¿½ï¿½ï¿½0100111101100000,ï¿½ï¿½ï¿½ï¿½Çºï¿½ï¿½ï¿½"ï¿½ï¿½"
+		//return bindec($bin_str); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½20320ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½"
+		return dechex(bindec($bin_str)); //ï¿½ï¿½ï¿½ë·µï¿½ï¿½Ê®ï¿½ï¿½ï¿½ï¿½ï¿½4f60ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 
 	/**
-	 * ½«ÎÄ×Ö½øÐÐUNICODE±àÂë
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½UNICODEï¿½ï¿½ï¿½ï¿½
 	 * @param <String> $name
 	 * @return <String>
 	 */
@@ -166,7 +166,7 @@ class XssFilter
 			$c = $name[$i];
 			$c2 = $name[$i + 1];
 			if (ord($c) > 0)
-			{   //Á½¸ö×Ö½ÚµÄÎÄ×Ö
+			{   //ï¿½ï¿½ï¿½ï¿½ï¿½Ö½Úµï¿½ï¿½ï¿½ï¿½ï¿½
 				$str .= '\u'.base_convert(ord($c), 10, 16).str_pad(base_convert(ord($c2), 10, 16), 2, 0, STR_PAD_LEFT);
 			}
 			else
@@ -178,12 +178,12 @@ class XssFilter
 	}
 
 	/**
-	 * ½«UNICODE±àÂëºóµÄÄÚÈÝ½øÐÐ½âÂë
+	 * ï¿½ï¿½UNICODEï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½ï¿½ï¿½Ð½ï¿½ï¿½ï¿½
 	 * @param <String> $name
 	 * @return <String>
 	 */
 	static function UnicodeDecode($name) {
-		//×ª»»±àÂë£¬½«Unicode±àÂë×ª»»³É¿ÉÒÔä¯ÀÀµÄutf-8±àÂë
+		//×ªï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½Unicodeï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½É¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½utf-8ï¿½ï¿½ï¿½ï¿½
 		$pattern = '/([\w]+)|(\\\u([0-9a-f]{4}))/i';
 		preg_match_all($pattern, $name, $matches);
 		if (!empty($matches))
@@ -209,5 +209,5 @@ class XssFilter
 		return $name;
 	}
 }
-//ºº×ÖÕýÔò [\u4E00-\u9FA5]
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ [\u4E00-\u9FA5]
 ?>
